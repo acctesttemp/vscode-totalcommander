@@ -36,20 +36,21 @@ const runTotalCommander = (path: string) => {
 	const quote = (p: string) => p.includes(" ") ? `"${p}"` : p;
 	const args: string[] = [];
 
-	if (config.reuseInstance) {
-		args.push("/O");
-	}
+	// if (config.reuseInstance) {
+	// 	args.push("/O");
+	// }
 
-	if (config.panel === "left") {
-		args.push(`/L=${quote(path)}`);
-	} else {
-		args.push(`/R=${quote(path)}`);
-	}
+	// if (config.panel === "left") {
+	// 	args.push(`/L=${quote(path)}`);
+	// } else {
+	// 	args.push(`/R=${quote(path)}`);
+	// }
 
-	if (config.createNewTab) {
-		args.push("/T");
-	}
-
+	// if (config.createNewTab) {
+	// 	args.push("/T");
+	// }
+	args.push("/OPEN");
+	args.push(`"${quote(path)}"`);
 	child.exec(`${quote(config.path)} ${args.join(' ')}`, (error: Error, _stdout: string, stderr: string) => {
 		if (error || stderr) {
 			const outputChannel = vscode.window.createOutputChannel(pkg.displayName);
